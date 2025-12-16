@@ -7,16 +7,6 @@ const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
-    let total = 0;
-    cart.forEach(item => {
-      const numericCost = parseFloat(item.cost.substring(1)); // remove "$" and convert to number
-      total += numericCost * item.quantity;
-    });
-    return total;
-  };
-
   const handleContinueShopping = (e) => {
     onContinueShopping(e); 
   };
@@ -27,19 +17,13 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Increment quantity
   const handleIncrement = (item) => {
-    dispatch(updateQuantity({
-      name: item.name,
-      quantity: item.quantity + 1
-    }));
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   // Decrement quantity
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
-      dispatch(updateQuantity({
-        name: item.name,
-        quantity: item.quantity - 1
-      }));
+        dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
       // If quantity would drop to 0, remove the item
       dispatch(removeItem({ name: item.name }));
@@ -55,6 +39,27 @@ const CartItem = ({ onContinueShopping }) => {
     const unitPrice = parseFloat(item.cost.substring(1));
     return unitPrice * item.quantity;
   };
+
+  // Getulio - Calculate total amount for all products in the cart
+  const calculateTotalAmount = () => {
+    let total = 0;
+    cart.forEach(item => {
+      const numericCost = parseFloat(item.cost.substring(1)); // remove "$" and convert to number
+      total += numericCost * item.quantity;
+    });
+    return total;
+  };
+
+
+// Getulio
+//const calculateTotalQuantity = () => {
+//    return cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+//};
+
+const calculateTotalQuantity = () => {
+  return cart ? cart.reduce((total, item) => total + item.quantity, 0) : 0;
+};
+
 
   return (
     <div className="cart-container">
