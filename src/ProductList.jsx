@@ -265,6 +265,11 @@ function ProductList({ onHomeClick }) {
         }));
     };
 
+    // Getulio
+    const calculateTotalQuantity = () => {
+        return cartItems ? cartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
