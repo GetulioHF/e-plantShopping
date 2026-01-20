@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { removeItem, updateQuantity } from './CartSlice.jsx';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -13,7 +13,6 @@ const CartItem = ({ onContinueShopping }) => {
     let total = 0;
     cart.forEach((item) => {
         const quantity = item.quantity;
-        // Remove "$" from cost string and convert to number
         const cost = parseFloat(item.cost.substring(1));
         total += quantity * cost;
     });
@@ -27,8 +26,8 @@ const CartItem = ({ onContinueShopping }) => {
 
   // GetulioHF
   const handleIncrement = (item) => {
-    const newQuantity = item.quantity + 1;
-    dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
+//    const newQuantity = item.quantity + 1;
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   // GetulioHF

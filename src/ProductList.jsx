@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import CartItem from './CartItem.jsx';
+import { addItem }  from './CartSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import './ProductList.css'
-import CartItem from './CartItem';
-import addItem  from './CartSlice';
 
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({}); // GetulioHF
-    //const CartItems = useSelector(state => state.cart?.items || []); // GetulioHF Task 4 (ERROR)
+    const CartItems = useSelector(state => state.cart.items); // GetulioHF Task 4 (ERROR)
     const plantsArray = [
         {
             category: "Air Purifying Plants",
