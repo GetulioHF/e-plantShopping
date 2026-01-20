@@ -1,10 +1,10 @@
 # e-plantShopping
 
 It is an e-commerce platform for buying and/or selling plants.
-Written in [React/Vue/Next.js]. Contains offers by browsing them, shopping cart, user authentication, and payment.
+Written in React, Vue, Next.js. Displays offers by browsing, shopping cart, user authentication, and payment.
 
 ## Features
-- Plant catalog
+- Plant catalog with prices
 - Wishlist
 - Shopping cart with checkout
 

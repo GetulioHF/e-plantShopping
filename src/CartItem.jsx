@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice.jsx';
+import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -8,28 +8,52 @@ const CartItem = ({ onContinueShopping }) => {
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
+  // Inserted by GetulioHF
   const calculateTotalAmount = () => {
- 
+    let total = 0;
+    cart.forEach((item) => {
+        const quantity = item.quantity;
+        // Remove "$" from cost string and convert to number
+        const cost = parseFloat(item.cost.substring(1));
+        total += quantity * cost;
+    });
+    return total; 
   };
 
+  // GetulioHF
   const handleContinueShopping = (e) => {
-   
+    onContinueShopping(e); 
   };
 
-
-
+  // GetulioHF
   const handleIncrement = (item) => {
+    const newQuantity = item.quantity + 1;
+    dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
   };
 
+  // GetulioHF
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {  
+        const newQuantity = item.quantity - 1;
+        dispatch(updateQuantity({ name: item.name, quantity: newQuantity }));
+    }
   };
 
+  // GetulioHF
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
+  // GetulioHF
   const calculateTotalCost = (item) => {
+    const quantity = item.quantity;
+    const cost = parseFloat(item.cost.substring(1)); // Removes "$" - convert to number
+    return quantity * cost;
+  };
+
+  const handleCheckoutShopping = (e) => {
+  alert('Functionality to be added for future reference');
   };
 
   return (
@@ -64,5 +88,3 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
-
-

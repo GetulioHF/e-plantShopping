@@ -17,8 +17,7 @@ export const CartSlice = createSlice({
     },    
     // GetulioHF CHECAR AQUI PARECE QUE É AQUI O PROBLEMA
     removeItem: (state, action) => {
-        const name = action.payload.name || action.payload;
-        state.items = state.items.filter(item => item.name !== name);
+        state.items = state.items.filter(item => item.name !== action.payload);
     },
     // GetulioHF
     updateQuantity: (state, action) => {
