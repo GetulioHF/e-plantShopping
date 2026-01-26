@@ -9,6 +9,7 @@ function ProductList({ onHomeClick }) {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({}); // GetulioHF
     const CartItems = useSelector(state => state.cart.items); // GetulioHF Task 4 (ERROR)
+    const dispatch = useDispatch(); // GetulioHF
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -259,8 +260,7 @@ function ProductList({ onHomeClick }) {
 
     // GetulioHF - Task 4 says to put this dispatch, but it was already here
     const handleAddToCart = (product) => {
-        dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action)
-      
+        dispatch(addItem(product));
         setAddedToCart((prevState) => ({ // Update the local state to reflect that the product has been added
           ...prevState, // Spread the previous state to retain existing entries
           [product.name]: true, // Set the current product's name as a key with value 'true' to mark it as added
